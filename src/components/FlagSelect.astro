@@ -1,0 +1,37 @@
+---
+import { Image } from "astro:assets";
+
+import flag_EN from "./flags/flag-english.png";
+import flag_AR from "./flags/flag-arabic.png";
+
+
+let current = Astro.currentLocale;
+
+let descriptions = [
+    { code: "en", flag: flag_EN },
+    { code: "ar", flag: flag_AR },
+];
+---
+
+<div class="flex gap-4 text-3xl mb-4">
+    {
+        descriptions.map((data) => (
+            <a
+                href={"/steam-review-template/" + data.code}
+                class:list={[
+                    data.code == current && "outline",
+                    "rounded no-underline text-white",
+                    "hover:bg-white hover:bg-opacity-20",
+                ]}
+            >
+                <Image
+                    src={data.flag}
+                    alt={data.code + " flag"}
+                    height={40}
+                    width={40}
+                    class={"block"}
+                />
+            </a>
+        ))
+    }
+</div>

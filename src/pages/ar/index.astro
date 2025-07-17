@@ -1,0 +1,52 @@
+---
+import config_json from "../../review_templates/template_ar.json"; // استخدم نسخة عربية من القالب
+import PageLayout from "../../layouts/PageLayout.astro";
+import OptionForm from "../../components/OptionForm.astro";
+import FlagSelect from "../../components/FlagSelect.astro";
+---
+
+<PageLayout title="قالب تقييم ستيم">
+  <header class="bg-slate-700 text-white py-2 flex flex-col items-center">
+    <h1>{"---{ قالب التقييم }---"}</h1>
+    <FlagSelect />
+    <p class="mt-0">☑ رهيب</p>
+  </header>
+
+  <div class="max-w-screen-sm mx-auto px-4">
+    <p>
+      الأداة هذي تسهّل عليك كتابة تقييمات ستيم اللي نسخها يتعب، خصوصًا اللي فيها تعليقات غريبة أو ضحك. لو وصلت لهنا فأكيد إنك تدور الشي ذا 😆.
+    </p>
+    <p>
+      الكود مفتوح المصدر &rarr; <a
+        href="https://github.com/VojtaStruhar/steam-review-template"
+      >
+        تقدر تشوفه على Github</a
+      >!
+    </p>
+    <p>
+      تحت بيطلع لك سطر يعطيني فيه كريدت (حقوق)، تقدر تشيله بس لو خليته أكون لك من الشاكرين!
+    </p>
+    {
+      config_json.categories.map((category, index) => (
+        <OptionForm category={category} index={index} />
+      ))
+    }
+    <div class="flex justify-center">
+      <button
+        id="output-button"
+        class="py-4 px-8 text-lg font-bold rounded-lg border-none shadow bg-amber-400 hover:cursor-pointer hover:shadow-lg transition-all"
+      >
+        سوِّ لي التقييم!</button
+      >
+    </div>
+
+    <div class="flex justify-center mt-4">
+      <button
+        id="copy-output"
+        class="py-2 px-4 text-lg rounded-lg border-none shadow bg-sky-100 hover:cursor-pointer hover:shadow-lg transition-all"
+      >
+        انسخ التقييم</button
+      >
+    </div>
+  </div>
+</PageLayout>
